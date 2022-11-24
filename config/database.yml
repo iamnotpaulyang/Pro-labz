@@ -81,6 +81,5 @@ test:
 #
 production:
   <<: *default
-  database: pro_labz_production
-  username: pro_labz
-  password: <%= ENV["PRO_LABZ_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
+
