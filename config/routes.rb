@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
   resources :ingredients, only: [:index, :create, :show]
   resources :protein_shake_ingredients
-  resources :categories, only: :index
+  resources :categories, only: [:index]
   resources :users, only: [:index, :show, :create]
   resources :protein_shakes
   resources :ingredients, only: [:index, :show, :destroy]
   resources :reviews
-  #post
+  post '/Login', to: 'sessions#create'
   # get "/me", to: "users#show"
-  #post
-  #delete
+  post '/SignUp', to: 'sessions#create'
+  delete '/Logout', to: 'sessions#destroy'
+  
 
   get '*path',
   to: 'fallback#index',

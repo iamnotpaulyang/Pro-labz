@@ -1,18 +1,13 @@
 class IngredientsController < ApplicationController
-    skip_before_action :authorize, only: [:index, :show, :destroy]
+    skip_before_action :authorize, only: [:index, :show]
 
     def index
         render json: Ingredient.all, status: :ok
     end
 
     def show
-        Ingredient.find({user_id: params[:id]})
+        Ingredient.find(params[:id])
         render json: find_ingredient, status: :ok
-    end
-
-    def destroy #?
-        find_ingredient.destroy
-        head :no_content
     end
 
 

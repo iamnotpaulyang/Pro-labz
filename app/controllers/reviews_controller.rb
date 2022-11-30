@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
     end
     
     def show
-        Review.find({user_id: params[:id]})
+        Review.find(params[:id])
         render json: find_review, status: :ok
     end
 

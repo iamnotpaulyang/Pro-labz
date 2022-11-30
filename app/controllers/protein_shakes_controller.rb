@@ -6,7 +6,7 @@ class ProteinShakesController < ApplicationController
         end
     
         def show
-            ProteinShake.find({user_id: params[:id]})
+            ProteinShake.find(params[:id])
             render json: find_protein_shake, status: :ok
         end
     
@@ -21,10 +21,10 @@ class ProteinShakesController < ApplicationController
             render json: protein_shake, status: :accepted
         end
     
-        def destroy
-            find_protein_shake.destroy #wanted to originally delete ingredient off of shake or shake itself? 
-            head :no_content
-        end
+        # def destroy ?
+        #     find_protein_shake.destroy 
+        #     head :no_content
+        # end
     
         private
     
@@ -32,7 +32,7 @@ class ProteinShakesController < ApplicationController
             ProteinShake.find_by(id: params[:id])
         end
     
-        def protein_shake_params #:ingredients?
+        def protein_shake_params
             params.permit(:name, :image)
         end
     end

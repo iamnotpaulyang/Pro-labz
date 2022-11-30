@@ -8,39 +8,39 @@ import SignUp from "./SignUp"
 
 
 function App() {
-  const [user, setUser] = useState(false);
-  const [logout, setLogout] = useState("");
-  const [login, setLogin] = useState('');
+  const [errors, setErrors] = useState(false)
+  const [currentUser, setCurrentUser] = useState(false)
+
 
   useEffect(() => {
-    const currentUser = sessionStorage.getItem('user')
-    if(currentUser){
-      setUser(JSON.parse(currentUser))
-    }
-  }, []);
+    fetch("/authorized_user")
+    .then((res) => {
+      if (res.ok) {
+        res.json()
+        .then((user) => {
+          updateUser(user);
+        });
+      }
+    })
+  },[])
 
-  function Login(user) {
-    setUser(user);
-  }
-
-  function Logout() { 
-    sessionStorage.removeItem('user')
-    setUser("");
+ 
+  const updateUser = (user) => setCurrentUser(user)
+  
+  if(errors) return <h1>{errors}</h1>
 
   return (
     <BrowserRouter>
       <div className="App">
-      <header className="App-header">
-        <Navbar user={user} setUser={setUser} setLogout={Logout}/>
-      </header>
+      
         <Switch>
           <Route path="/ProteinShakeCard">
             <h1>Test Route</h1>
           </Route>
           <Route path="/SignUp">
-            <h1>Test Route</h1>
+          <SignUp updateUser={updateUser}/> 
           </Route>
-          <Route path="/login"><Login setLogin={setUser} user={user}/></Route>
+          <Route path="/login"><Login updateUser={updateUser}/></Route>
           <Route path="/">
             <h1>Pro Labz</h1>
           </Route>
@@ -48,7 +48,6 @@ function App() {
       </div>
     </BrowserRouter>
   );
-}
 }
 
 export default App;

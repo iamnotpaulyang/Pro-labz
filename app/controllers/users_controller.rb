@@ -9,8 +9,6 @@ skip_before_action :authorize, only: [:index, :create, :show]
         user = User.create!(user_params)
         session[:user_id] = user.id
         render json: user, status: :created
-        # user = User.create!(user_params)
-        # render json: user, status: :created
     end
     
     def show
