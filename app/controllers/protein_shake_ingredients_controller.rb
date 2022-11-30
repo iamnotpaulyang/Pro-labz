@@ -1,0 +1,2 @@
+class ProteinShakeIngredientsController < ApplicationController
+end
