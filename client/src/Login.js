@@ -20,7 +20,7 @@ function Login({ updateUser }) {
             password
         }
        console.log(user)
-        fetch(`/Login`,{
+        fetch(`/login`,{
           method:'POST',
           headers:{'Content-Type': 'application/json'},
           body:JSON.stringify(user)

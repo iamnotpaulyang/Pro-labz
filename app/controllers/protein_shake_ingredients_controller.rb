@@ -7,32 +7,33 @@ skip_before_action :authorize, only: [:index, :create, :show, :update, :destroy]
 
     def show
         ProteinShakeIngredient.find(params[:id])
-        render json: find_protein_shake_ingredients, status: :ok
+        render json: find_protein_shake_ingredient, status: :ok
     end
 
     def create
-        protein_shake_ingredients = ProteinShakeIngredients.create!(protein_shake_ingredients_params)
-        render json: protein_shake_ingredients, status: :created
+        protein_shake_ingredient = ProteinShakeIngredient.create!(protein_shake_ingredient_params)
+        render json: protein_shake_ingredient, status: :created
     end
 
     def update
-        protein_shake_ingredients = find_protein_shake_ingredients
-        protein_shake_ingredients.update(protein_shake_ingredients_params.permit)
-        render json: protein_shake_ingredients, status: :accepted
+        protein_shake_ingredient = find_protein_shake_ingredients
+        protein_shake_ingredient.update(protein_shake_ingredient_params.permit)
+        render json: protein_shake_ingredient, status: :accepted
     end
 
     def destroy
-        find_protein_shake_ingredients.destroy 
+        find_protein_shake_ingredient.destroy 
         head :no_content
     end
 
     private
 
-    def find_protein_shake_ingredients
-        ProteinShakeIngredients.find_by(id: params[:id])
+    def find_protein_shake_ingredient
+        ProteinShakeIngredient.find_by(id: params[:id])
     end
 
-    def protein_shake_ingredients_params
+    def protein_shake_ingredient_params
         params.permit(:protein_shake_id, :ingredient_id)
     end
 end
+

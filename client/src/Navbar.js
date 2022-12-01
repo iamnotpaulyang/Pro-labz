@@ -5,10 +5,10 @@ function NavBar(){
 return (
     <div className="navbarDiv">
         <NavLink exact to="/" style={{ marginRight: "10px" }}>Home</NavLink>
-        <NavLink exact to="/ProteinShakeCards" style={{ marginRight: "10px" }}>Protein Shakes</NavLink>
-        <NavLink exact to="/CreateShakes" style={{ marginRight: "10px" }}>Create Shakes</NavLink>
-        <NavLink exact to="/Login" style={{ marginRight: "10px" }}>Login</NavLink>
-        <NavLink exact to="Signup" style={{ marginRight: "10px" }}>SignUp</NavLink>
+        <NavLink exact to="/proteinshake" style={{ marginRight: "10px" }}>Protein Shakes</NavLink>
+        <NavLink exact to="/createshake" style={{ marginRight: "10px" }}>Create Shakes</NavLink>
+        <NavLink exact to="/login" style={{ marginRight: "10px" }}>Login</NavLink>
+        <NavLink exact to="signup" style={{ marginRight: "10px" }}>SignUp</NavLink>
     </div>
 )
 }

@@ -7,9 +7,10 @@ Rails.application.routes.draw do
   resources :ingredients, only: [:index, :show, :destroy]
   resources :reviews
 
-  post '/Login', to: 'sessions#create'
-  post '/SignUp', to: 'sessions#create'
-  delete '/Logout', to: 'sessions#destroy'
+  post '/login', to: 'sessions#create'
+  post '/signUp', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+  
   # get "/me", to: "users#show"
 
   get '*path',

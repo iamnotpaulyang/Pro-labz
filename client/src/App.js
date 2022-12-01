@@ -6,21 +6,28 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 import CreateShake from "./CreateShake"
 import ProteinShakeCard from "./ProteinShakeCard"
+import ProteinShakeListing from "./ProteinShakeListing"
 
 
 
 function App() {
   const [errors, setErrors] = useState(false)
   const [currentUser, setCurrentUser] = useState(false)
-
-
-
-
-
-
-
+  const [search, setSearch] = useState("")
+  const [proteinShakeListing, setProteinShakeListing] = useState([]);
 
   
+  useEffect(() => {
+    fetch("/protein_shakes")
+      .then((r) => r.json())
+      .then((proteinshake) => {
+        setProteinShakeListing(proteinshake);
+      });
+      // const userStorage = sessionStorage.user_data ? JSON.parse(sessionStorage.user_data) : null
+      // setVolunteerLogIn(userStorage)
+  }, []);
+
+
 
   useEffect(() => {
     fetch("/authorized_user")
@@ -44,13 +51,16 @@ function App() {
       <div className="App">
       <NavBar />
         <Switch>
-          <Route path="/CreateShakes">
+          <Route path="/createshake">
             <CreateShake/>
             </Route>
-          <Route path="/ProteinShakeCards">
-            <ProteinShakeCard/>
-          </Route>
-          <Route path="/SignUp">
+          {/* <Route path="/proteinshake">
+            <ProteinShakeCard />
+            </Route> */}
+            <Route path="/proteinshake">
+              <ProteinShakeListing proteinShakeListing={proteinShakeListing}/>
+            </Route>
+          <Route path="/signUp">
           <SignUp updateUser={updateUser}/> 
           </Route>
           <Route path="/login"><Login updateUser={updateUser}/></Route>
