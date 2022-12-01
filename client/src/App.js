@@ -23,8 +23,6 @@ function App() {
       .then((proteinshake) => {
         setProteinShakeListing(proteinshake);
       });
-      // const userStorage = sessionStorage.user_data ? JSON.parse(sessionStorage.user_data) : null
-      // setVolunteerLogIn(userStorage)
   }, []);
 
 
@@ -49,7 +47,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-      <NavBar />
+      <NavBar updateUser={updateUser} currentUser={currentUser}/>
         <Switch>
           <Route path="/createshake">
             <CreateShake/>
@@ -60,7 +58,7 @@ function App() {
             <Route path="/proteinshake">
               <ProteinShakeListing proteinShakeListing={proteinShakeListing}/>
             </Route>
-          <Route path="/signUp">
+          <Route path="/signup">
           <SignUp updateUser={updateUser}/> 
           </Route>
           <Route path="/login"><Login updateUser={updateUser}/></Route>

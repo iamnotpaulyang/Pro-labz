@@ -18,7 +18,8 @@ function ProteinShakeCard ({shake}){
         <h1 className="shake-name"> {shake.name} </h1>
       </div>
       <div className="card">
-        <p className="shake-image">{shake.image}</p>
+        {/* <p className="shake-image">{shake.image}</p> */}
+        <img src={shake.image} alt="protein-shake" />
       </div>
         </div>
     )

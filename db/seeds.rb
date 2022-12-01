@@ -7,11 +7,11 @@ U4 = User.create(username: "P-painz", password: "chickenlegs")
 
 puts "Creating Protein Shakes..."
 #add images later
-PS1 = ProteinShake.create(name: "Manego_Madness")
+PS1 = ProteinShake.create(name: "Mango Madness", image: "https://healthywithachanceofsprinkles.com/wp-content/uploads/2022/02/Easy-Mango-Spinach-Smoothie-Recipe.jpg")
 PS2 = ProteinShake.create(name: "Stuffed PBJ")
 PS3 = ProteinShake.create(name: "Heartbeat")
-PS4 = ProteinShake.create(name: "Piña_Colada")
-PS5 = ProteinShake.create(name: "Pick-me-Up")
+PS4 = ProteinShake.create(name: "Piña Colada")
+PS5 = ProteinShake.create(name: "Pick-me-Up") 
 
 puts "Creating Categories..."
 

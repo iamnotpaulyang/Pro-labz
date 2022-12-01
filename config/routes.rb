@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :reviews
 
   post '/login', to: 'sessions#create'
-  post '/signUp', to: 'sessions#create'
+  post '/signup', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   
   # get "/me", to: "users#show"

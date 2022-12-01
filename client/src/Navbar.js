@@ -1,9 +1,27 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
+import { useHistory } from "react-router-dom"
 
-function NavBar(){
-return (
+function NavBar({updateUser, currentUser}){
+    const history = useHistory()
+
+    const handleLogout = () => {
+        fetch(`/logout`, {
+            method:"DELETE"
+        })
+        .then(res =>{
+            if(res.ok){
+            updateUser(false)
+            history.push("/login")
+            }
+        })
+    }
+    console.log('logged out')
+    return (
     <div className="navbarDiv">
+        <div className="logoutButtonDiv">
+        <button className="logoutButton" onClick={handleLogout}>Logout</button>
+        </div>
         <NavLink exact to="/" style={{ marginRight: "10px" }}>Home</NavLink>
         <NavLink exact to="/proteinshake" style={{ marginRight: "10px" }}>Protein Shakes</NavLink>
         <NavLink exact to="/createshake" style={{ marginRight: "10px" }}>Create Shakes</NavLink>
