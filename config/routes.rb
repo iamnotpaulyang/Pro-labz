@@ -6,11 +6,11 @@ Rails.application.routes.draw do
   resources :protein_shakes
   resources :ingredients, only: [:index, :show, :destroy]
   resources :reviews
+
   post '/Login', to: 'sessions#create'
-  # get "/me", to: "users#show"
   post '/SignUp', to: 'sessions#create'
   delete '/Logout', to: 'sessions#destroy'
-  
+  # get "/me", to: "users#show"
 
   get '*path',
   to: 'fallback#index',

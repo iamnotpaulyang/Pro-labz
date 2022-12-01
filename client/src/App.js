@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Navbar from "./Navbar";
+import NavBar from "./Navbar";
 import Home from "./Home";
 import Login from "./Login";
-import SignUp from "./SignUp"
+import SignUp from "./SignUp";
+import CreateShake from "./CreateShake"
+import ProteinShakeCard from "./ProteinShakeCard"
 
 
 
@@ -11,6 +13,14 @@ function App() {
   const [errors, setErrors] = useState(false)
   const [currentUser, setCurrentUser] = useState(false)
 
+
+
+
+
+
+
+
+  
 
   useEffect(() => {
     fetch("/authorized_user")
@@ -32,10 +42,13 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-      
+      <NavBar />
         <Switch>
-          <Route path="/ProteinShakeCard">
-            <h1>Test Route</h1>
+          <Route path="/CreateShakes">
+            <CreateShake/>
+            </Route>
+          <Route path="/ProteinShakeCards">
+            <ProteinShakeCard/>
           </Route>
           <Route path="/SignUp">
           <SignUp updateUser={updateUser}/> 
