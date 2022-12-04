@@ -1,5 +1,5 @@
 class IngredientsController < ApplicationController
-    skip_before_action :authorize, only: [:index, :show]
+    skip_before_action :authorized, only: [:index, :show]
 
     def index
         render json: Ingredient.all, status: :ok

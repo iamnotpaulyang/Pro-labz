@@ -1,3 +1,11 @@
+Username.destroy_all
+ProteinShake.destroy_all
+Categories.destroy_all
+Reviews.destroy_all
+Ingredients.destroy_all
+ProteinShakeIngredient.destroy_all
+
+
 puts "Creating Usernames..."
 
 U1 = User.create(username: "C-fitz", password: "bootay")

@@ -7,15 +7,20 @@ import SignUp from "./SignUp";
 import CreateShake from "./CreateShake"
 import ProteinShakeCard from "./ProteinShakeCard"
 import ProteinShakeListing from "./ProteinShakeListing"
+import ReviewForm from "./ReviewForm"
+import MyShakes from "./MyShakes"
 
 
 
 function App() {
-  const [errors, setErrors] = useState(false)
-  const [currentUser, setCurrentUser] = useState(false)
-  const [search, setSearch] = useState("")
+  const [errors, setErrors] = useState(false);
+  const [currentUser, setCurrentUser] = useState(false);
+  const [search, setSearch] = useState("");
   const [proteinShakeListing, setProteinShakeListing] = useState([]);
+  const [reviews, setReviews] = useState ([]);
 
+  
+  
   
   useEffect(() => {
     fetch("/protein_shakes")
@@ -25,7 +30,21 @@ function App() {
       });
   }, []);
 
+  // useEffect(()=> {
+  //   fetch("/ingredients")
+  //   .then((res)=> res.json ())
+  //   .then((ingredients) => {
+  //     setIngredients(ingredients);
+  //   });
+  // },[]);
 
+  // useEffect(()=> {
+  //   fetch("/categories")
+  //   .then((res)=> res.json ())
+  //   .then((category_id)=> {
+  //     setName(category_id);
+  //   })
+  // },[]);
 
   useEffect(() => {
     fetch("/authorized_user")
@@ -39,7 +58,8 @@ function App() {
     })
   },[])
 
- 
+  
+
   const updateUser = (user) => setCurrentUser(user)
   
   if(errors) return <h1>{errors}</h1>
@@ -49,8 +69,17 @@ function App() {
       <div className="App">
       <NavBar updateUser={updateUser} currentUser={currentUser}/>
         <Switch>
+          <Route path="/myshakes">
+          <h1>Hello</h1>
+            <MyShakes/>
+          </Route>
+          <Route path="/review">
+          <ReviewForm/>
+            <h1>Hello Reviews</h1>
+          </Route>
           <Route path="/createshake">
-            <CreateShake/>
+            <CreateShake
+            />
             </Route>
           {/* <Route path="/proteinshake">
             <ProteinShakeCard />

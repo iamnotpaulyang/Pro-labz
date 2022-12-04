@@ -1,5 +1,5 @@
 class ProteinShakesController < ApplicationController
-        skip_before_action :authorize, only: [:index, :create, :show, :destroy]
+        skip_before_action :authorized, only: [:index, :create, :show, :destroy]
         
         def index
             render json: ProteinShake.all, status: :ok 
@@ -21,10 +21,10 @@ class ProteinShakesController < ApplicationController
             render json: protein_shake, status: :accepted
         end
     
-        # def destroy ?
-        #     find_protein_shake.destroy 
-        #     head :no_content
-        # end
+        def destroy
+            find_protein_shake.destroy 
+            head :no_content
+        end
     
         private
     

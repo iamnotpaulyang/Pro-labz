@@ -16,7 +16,6 @@ function NavBar({updateUser, currentUser}){
             }
         })
     }
-    console.log('logged out')
     return (
     <div className="navbarDiv">
         <div className="logoutButtonDiv">
@@ -25,6 +24,8 @@ function NavBar({updateUser, currentUser}){
         <NavLink exact to="/" style={{ marginRight: "10px" }}>Home</NavLink>
         <NavLink exact to="/proteinshake" style={{ marginRight: "10px" }}>Protein Shakes</NavLink>
         <NavLink exact to="/createshake" style={{ marginRight: "10px" }}>Create Shakes</NavLink>
+        <NavLink exact to="myshakes" style={{ marginRight: "10px" }}>My Shakes</NavLink>
+        <NavLink exact to="/review" style={{ marginRight: "10px" }}>Create Review</NavLink>
         <NavLink exact to="/login" style={{ marginRight: "10px" }}>Login</NavLink>
         <NavLink exact to="signup" style={{ marginRight: "10px" }}>SignUp</NavLink>
     </div>

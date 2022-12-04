@@ -49,10 +49,13 @@ function SignUp({updateUser}){
             if(res.ok){
                 res.json().then(user => {
                     updateUser(user)
-                    history.push("/Login")
+                    history.push("/login")
                 })
             }else {
-                res.json().then(json => setErrors(Object.entries(json.errors)))
+                //  res.json().then(json => setErrors(Object.entries(json.errors)))
+            
+                res.json().then(json => setErrors(json.errors))
+                
             }
         })
        
