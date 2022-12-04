@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from "react-router-dom"
 
 
-
+//Login
 function Login({ updateUser }) {
     const [formData, setFormData] = useState({
         username:'',
@@ -40,7 +40,7 @@ function Login({ updateUser }) {
         })
        
     }
-
+    
     const handleChange = (e) => {
         const { name, value } = e.target 
         setFormData({ ...formData, [name]: value })

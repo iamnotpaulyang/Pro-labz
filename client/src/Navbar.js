@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from "react-router-dom";
 import { useHistory } from "react-router-dom"
 
+//Logout
 function NavBar({updateUser, currentUser}){
     const history = useHistory()
 

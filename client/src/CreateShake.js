@@ -4,6 +4,7 @@ function CreateShake() {
   const [categories, setCategories] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   const [shakeRecipe, setShakeRecipe] = useState([]);
+  // const []
   //   const [categories, setCategories] = useState([]);
   //   const [selected, setCategoryChange] = useState("");
 
@@ -11,6 +12,7 @@ function CreateShake() {
     getSelections();
   }, []);
 
+  //Fetching both category & ingredient
   function getSelections() {
     const urls = ["/categories", "/ingredients"];
     Promise.all(urls.map((url) => fetch(url)))
@@ -21,10 +23,13 @@ function CreateShake() {
       });
   }
 
+  //Spreading ingredients
   const handleAddingIngredients = (ingredient) => {
     const ingredientArray = [...shakeRecipe, ingredient];
     setShakeRecipe(ingredientArray);
   };
+
+  // Displaying each specific ingredient
 
   const ingredientDisplay = (category) => {
     return ingredients
@@ -42,6 +47,8 @@ function CreateShake() {
         );
       });
   };
+
+  //Displaying all categories
   const categoriesDisplay = categories.map((category) => {
     return (
       <>
@@ -53,6 +60,7 @@ function CreateShake() {
     );
   });
 
+  // Listing each ingredient into shakes
   return (
     <div style={{ display: "flex" }}>
       <div>
@@ -68,5 +76,5 @@ function CreateShake() {
     </div>
   );
 }
-
+//Mapping through each ingredient ^
 export default CreateShake;

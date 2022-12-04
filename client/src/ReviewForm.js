@@ -55,4 +55,4 @@ return(
 
 }
 
-export default ReviewForm;
+export default ReviewForm

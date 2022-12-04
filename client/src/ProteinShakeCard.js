@@ -1,7 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-function ProteinShakeCard({ shake }) {
+//
+function ProteinShakeCard({ shake, reviews }) {
   console.log(shake);
   // const history = useHistory();
 
@@ -9,7 +10,8 @@ function ProteinShakeCard({ shake }) {
   //     console.log(name);
   //     history.push(`/proteinshake/${name}`);
   // }
-//  
+  
+  //Shakes and all their details
   return (
     <div>
       <div className="card">
@@ -18,10 +20,16 @@ function ProteinShakeCard({ shake }) {
       <div className="card">
         <img src={shake.image} alt="protein-shake" />
       </div>
-      {/* <div className="card">
-      displayFunctionIngredients.map
-        <h3 className="ingredients" {shake.ingredients} </h3> */}
-      {/* </div> */}
+      <ul>
+        {shake.ingredients.map((ingredient) => (
+          <li>{ingredient.name}</li>
+        ))}
+      </ul>
+      <ul>
+        {shake.reviews.map((review) => (
+          <li>{review.description}</li>
+        ))}
+      </ul>
     </div>
   );
 }
