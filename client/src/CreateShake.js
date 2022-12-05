@@ -4,13 +4,13 @@ function CreateShake() {
   const [categories, setCategories] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   const [shakeRecipe, setShakeRecipe] = useState([]);
-  // const []
+  const [fetchedData, setFetchedData] = useState(false);
   //   const [categories, setCategories] = useState([]);
   //   const [selected, setCategoryChange] = useState("");
 
   useEffect(() => {
     getSelections();
-  }, []);
+  }, [fetchedData]);
 
   //Fetching both category & ingredient
   function getSelections() {
@@ -35,14 +35,16 @@ function CreateShake() {
     return ingredients
       .filter((ingredient) => {
         return ingredient.category.name === category;
+        // return ingredient.category.image === category
       })
       .map((ingredient) => {
         return (
           <button
             onClick={() => handleAddingIngredients(ingredient)}
-            style={{ margin: "10px" }}
+            // style={{ margin: "1px" }}
           >
             {ingredient.name}
+            <img src={ingredient.image} alt="ingredient" />
           </button>
         );
       });
@@ -60,12 +62,22 @@ function CreateShake() {
     );
   });
 
+  function deleteIngredient(id) {
+    setFetchedData(true);
+    const grabIngredient = {
+      method: "DELETE",
+    };
+    fetch(`/ingredients"/${id}`, grabIngredient).then(() =>
+      setFetchedData(false)
+    );
+  }
+
   // Listing each ingredient into shakes
   return (
     <div style={{ display: "flex" }}>
       <div>
         <label>Ingredients: </label>
-
+        <button onClick={() => deleteIngredient(ingredients)}> Remove Ingreident </button>
         {categoriesDisplay}
       </div>
       <div style={{ width: "50vw" }}>
