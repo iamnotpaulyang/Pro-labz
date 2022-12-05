@@ -58,30 +58,34 @@ function CreateShake({ currentUser }) {
       });
   };
   console.log(shakeRecipe)
+  const shakeObj = {name: shakeName, image: shakeImg, recipe: shakeRecipe}
+  console.log(shakeObj)
   //trying to create shake but not grabbing ingredient
   const handleCreateShake = () => {
   
-    fetch(`/protein_shakes`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: shakeName, image: shakeImg }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        let newShakeArray = shakeRecipe.map((shake) => {
-          console.log(shake)
-          return {ingredient_id: parseInt(shake.id), protein_shake_id: parseInt(data.id)};
-        });
-        console.log(newShakeArray);
-        fetch(`/protein_shake_ingredients`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify( newShakeArray ),
-        })
-          .then((res) => res.json())
-          .then((data) => console.log(data));
-      });
+  
+
+    // fetch(`/protein_shakes`, {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({ name: shakeName, image: shakeImg }),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     let newShakeArray = shakeRecipe.map((shake) => {
+    //       console.log(shake)
+    //       return {ingredient_id: parseInt(shake.id), protein_shake_id: parseInt(data.id)};
+    //     });
+    //     console.log(newShakeArray);
+    //     fetch(`/protein_shake_ingredients`, {
+    //       method: "POST",
+    //       headers: { "Content-Type": "application/json" },
+    //       body: JSON.stringify( newShakeArray),
+    //     })
+    //       .then((res) => res.json())
+    //       .then((data) => console.log(data));
+    //   });
     //   console.log(currentUser);
   };
 
