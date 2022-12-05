@@ -57,39 +57,6 @@ function CreateShake({ currentUser }) {
         );
       });
   };
-  console.log(shakeRecipe)
-  const shakeObj = {name: shakeName, image: shakeImg, recipe: shakeRecipe}
-  console.log(shakeObj)
-  //trying to create shake but not grabbing ingredient
-  const handleCreateShake = () => {
-  
-  
-
-    // fetch(`/protein_shakes`, {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({ name: shakeName, image: shakeImg }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     let newShakeArray = shakeRecipe.map((shake) => {
-    //       console.log(shake)
-    //       return {ingredient_id: parseInt(shake.id), protein_shake_id: parseInt(data.id)};
-    //     });
-    //     console.log(newShakeArray);
-    //     fetch(`/protein_shake_ingredients`, {
-    //       method: "POST",
-    //       headers: { "Content-Type": "application/json" },
-    //       body: JSON.stringify( newShakeArray),
-    //     })
-    //       .then((res) => res.json())
-    //       .then((data) => console.log(data));
-    //   });
-    //   console.log(currentUser);
-  };
-
-  //Displaying all categories
   const categoriesDisplay = categories.map((category) => {
     return (
       <>
@@ -101,48 +68,67 @@ function CreateShake({ currentUser }) {
     );
   });
 
-  //Delete ingredient from shake
-  function deleteIngredient(i) {
-    const recipeIngredientFilter = shakeRecipe.filter((ingredient, index) => {
-      return i !== index;
-    });
-    setShakeRecipe(recipeIngredientFilter);
-  }
+  console.log(shakeRecipe);
+  const shakeObj = { name: shakeName, image: shakeImg, recipe: shakeRecipe };
+  console.log(shakeObj);
+  //trying to create shake but not grabbing ingredient
+  const handleCreateShake = () => {
+    fetch(`/protein_shakes`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(shakeObj),
+    }).then((res) => res.json());
+    // .then((data) => console.log(data)
 
-  // Listing each ingredient into shakes
-  return (
-    <div style={{ display: "flex" }}>
-      <div>
-        <label>Ingredients: </label>
-        {categoriesDisplay}
+    //Displaying all categories
+    
+
+    //Delete ingredient from shake
+    function deleteIngredient(i) {
+      const recipeIngredientFilter = shakeRecipe.filter((ingredient, index) => {
+        return i !== index;
+      });
+      setShakeRecipe(recipeIngredientFilter);
+    }
+
+    // Listing each ingredient into shakes
+    return (
+      <div style={{ display: "flex" }}>
+        <div>
+          <label>Ingredients: </label>
+          {categoriesDisplay}
+        </div>
+        <div style={{ width: "50vw" }}>
+          {shakeRecipe.map((ingredient, index) => {
+            return (
+              <div style={{ display: "flex" }}>
+                <p> {ingredient.name}</p>
+                <button
+                  style={{ height: "20px" }}
+                  onClick={() => {
+                    deleteIngredient(index);
+                  }}
+                >
+                  x
+                </button>
+              </div>
+            );
+          })}
+          <label>Shake Name:</label>
+          <input
+            value={shakeName}
+            onChange={(e) => setShakeName(e.target.value)}
+          />
+          <label>Shake Image url:</label>
+          <input
+            value={shakeImg}
+            onChange={(e) => setShakeImg(e.target.value)}
+          />
+          <button onClick={handleCreateShake}>Create My Shake</button>
+        </div>
       </div>
-      <div style={{ width: "50vw" }}>
-        {shakeRecipe.map((ingredient, index) => {
-          return (
-            <div style={{ display: "flex" }}>
-              <p> {ingredient.name}</p>
-              <button
-                style={{ height: "20px" }}
-                onClick={() => {
-                  deleteIngredient(index);
-                }}
-              >
-                x
-              </button>
-            </div>
-          );
-        })}
-        <label>Shake Name:</label>
-        <input
-          value={shakeName}
-          onChange={(e) => setShakeName(e.target.value)}
-        />
-        <label>Shake Image url:</label>
-        <input value={shakeImg} onChange={(e) => setShakeImg(e.target.value)} />
-        <button onClick={handleCreateShake}>Create My Shake</button>
-      </div>
-    </div>
-  );
+    );
+  };
 }
 //Mapping through each ingredient ^
 export default CreateShake;
