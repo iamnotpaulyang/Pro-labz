@@ -1,5 +1,5 @@
 class ProteinShakesController < ApplicationController
-        skip_before_action :authorized, only: [:index, :create, :show, :destroy]
+        skip_before_action :authorize, only: [:index, :create, :show, :destroy]
         
         def index
             render json: ProteinShake.all, status: :ok 

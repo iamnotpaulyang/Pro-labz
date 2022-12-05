@@ -12,7 +12,7 @@ import MyShakes from "./MyShakes";
 
 function App() {
   const [errors, setErrors] = useState(false);
-  const [currentUser, setCurrentUser] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
   const [search, setSearch] = useState("");
   const [proteinShakeListing, setProteinShakeListing] = useState([]);
   const [reviews, setReviews] = useState([]);
@@ -54,13 +54,13 @@ function App() {
   //Authorization
 
   useEffect(() => {
-    fetch("/authorized_user").then((res) => {
-      if (res.ok) {
-        res.json().then((user) => {
-          updateUser(user);
-        });
-      }
-    });
+    // fetch("/authorized_user").then((res) => {
+    //   if (res.ok) {
+    //     res.json().then((user) => {
+    //       updateUser(user);
+    //     });
+    //   }
+    // });
   }, []);
 
   const updateUser = (user) => setCurrentUser(user);
@@ -81,7 +81,7 @@ function App() {
             <h1>Hello Reviews</h1>
           </Route>
           <Route path="/createshake">
-            <CreateShake />
+            <CreateShake currentUser={currentUser} />
           </Route>
           {/* <Route path="/proteinshake">
             <ProteinShakeCard />
@@ -96,7 +96,7 @@ function App() {
             <SignUp updateUser={updateUser} />
           </Route>
           <Route path="/login">
-            <Login updateUser={updateUser} />
+            <Login updateUser={updateUser}  />
           </Route>
           <Route path="/">
             <h1>Pro Labz</h1>

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :protein_shake_ingredients
   resources :categories, only: [:index]
   resources :users, only: [:index, :show, :create]
-  resources :protein_shakes
+  resources :protein_shakes, only: [:index, :show, :create]
   resources :ingredients, only: [:index, :show, :destroy]
   resources :reviews
 

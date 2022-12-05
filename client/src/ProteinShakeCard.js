@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 //
 function ProteinShakeCard({ shake, reviews }) {
   console.log(shake);
+  console.log(reviews)
   // const history = useHistory();
 
   // function selectProteinShake(name){

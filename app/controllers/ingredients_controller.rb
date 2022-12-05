@@ -1,5 +1,5 @@
 class IngredientsController < ApplicationController
-    skip_before_action :authorized, only: [:index, :show]
+    skip_before_action :authorize, only: [:index, :show, :create]
 
     def index
         render json: Ingredient.all, status: :ok
@@ -10,7 +10,10 @@ class IngredientsController < ApplicationController
         render json: find_ingredient, status: :ok
     end
 
-
+    def create
+        ingredient = Ingredient.create!(ingredient_params)
+        render json: ingredient, status: :created
+    end
 
     private
     

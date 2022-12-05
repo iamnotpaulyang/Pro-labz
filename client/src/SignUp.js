@@ -83,9 +83,13 @@ return (
           value={formData.password}
           placeholder="password"
         />
+        {errors.length > 0 && errors.map((error)=>{
+         return <p>{error}</p>
+        })}
         <div>
-          <button type="submit">SignUp</button>
+          <button type="submit">SignUp</button> 
         </div>
+      
       </form>
     </div>
   );

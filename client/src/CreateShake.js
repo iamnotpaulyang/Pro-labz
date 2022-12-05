@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 
-function CreateShake() {
+function CreateShake({ currentUser }) {
   const [categories, setCategories] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   const [shakeRecipe, setShakeRecipe] = useState([]);
   const [fetchedData, setFetchedData] = useState(false);
+  const [shakeName, setShakeName] = useState("");
+  const [shakeImg, setShakeImg] = useState("");
   //   const [categories, setCategories] = useState([]);
   //   const [selected, setCategoryChange] = useState("");
 
@@ -39,15 +41,46 @@ function CreateShake() {
       })
       .map((ingredient) => {
         return (
-          <button
-            onClick={() => handleAddingIngredients(ingredient)}
-            // style={{ margin: "1px" }}
-          >
-            {ingredient.name}
-            <img src={ingredient.image} alt="ingredient" />
-          </button>
+          <div style={{ display: "flex" }}>
+            <button
+              onClick={() => handleAddingIngredients(ingredient)}
+              // style={{ margin: "1px" }}
+            >
+              <img
+                src={ingredient.image}
+                alt="ingredient"
+                style={{ width: "100px", height: "100px" }}
+              />
+              <p>{ingredient.name}</p>
+            </button>
+          </div>
         );
       });
+  };
+
+  //trying to create shake but not grabbing ingredient
+  const handleCreateShake = () => {
+    fetch(`/protein_shakes`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: shakeName, image: shakeImg }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        let newShakeArray = shakeRecipe.map((shake) => {
+          return { ingredient_id: shake.id, protein_shake_id: data.id };
+        });
+        console.log(newShakeArray);
+        fetch(`/protein_shake_ingredients`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ newShakeArray }),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data));
+      });
+    //   console.log(currentUser);
   };
 
   //Displaying all categories
@@ -62,14 +95,12 @@ function CreateShake() {
     );
   });
 
-  function deleteIngredient(id) {
-    setFetchedData(true);
-    const grabIngredient = {
-      method: "DELETE",
-    };
-    fetch(`/ingredients"/${id}`, grabIngredient).then(() =>
-      setFetchedData(false)
-    );
+  //Delete ingredient from shake
+  function deleteIngredient(i) {
+    const recipeIngredientFilter = shakeRecipe.filter((ingredient, index) => {
+      return i !== index;
+    });
+    setShakeRecipe(recipeIngredientFilter);
   }
 
   // Listing each ingredient into shakes
@@ -77,13 +108,32 @@ function CreateShake() {
     <div style={{ display: "flex" }}>
       <div>
         <label>Ingredients: </label>
-        <button onClick={() => deleteIngredient(ingredients)}> Remove Ingreident </button>
         {categoriesDisplay}
       </div>
       <div style={{ width: "50vw" }}>
-        {shakeRecipe.map((ingredient) => {
-          return <p> {ingredient.name}</p>;
+        {shakeRecipe.map((ingredient, index) => {
+          return (
+            <div style={{ display: "flex" }}>
+              <p> {ingredient.name}</p>
+              <button
+                style={{ height: "20px" }}
+                onClick={() => {
+                  deleteIngredient(index);
+                }}
+              >
+                x
+              </button>
+            </div>
+          );
         })}
+        <label>Shake Name:</label>
+        <input
+          value={shakeName}
+          onChange={(e) => setShakeName(e.target.value)}
+        />
+        <label>Shake Image url:</label>
+        <input value={shakeImg} onChange={(e) => setShakeImg(e.target.value)} />
+        <button onClick={handleCreateShake}>Create My Shake</button>
       </div>
     </div>
   );
