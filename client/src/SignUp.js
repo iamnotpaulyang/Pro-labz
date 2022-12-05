@@ -2,71 +2,68 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 //Signup
-function SignUp({updateUser}){
-    // const [username, setUserName] = useState("");
-    // const [password, setPassword] = useState("");
-    // const history = useHistory();
+function SignUp({ updateUser }) {
+  // const [username, setUserName] = useState("");
+  // const [password, setPassword] = useState("");
+  // const history = useHistory();
 
-    // function handleSubmit(e) {
-    //     e.preventDefault();
-    //     let userInfo = {
-    //       username: username,
-    //       password,
+  // function handleSubmit(e) {
+  //     e.preventDefault();
+  //     let userInfo = {
+  //       username: username,
+  //       password,
 
-    //     };
-    //     console.log(userInfo);
-    //     fetch("/signup", {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify(userInfo),
-    //     })
-    //       .then((r) => r.json())
-    //       .then((user) => history.push("/login"));
-    //   } 
-    const [formData, setFormData] = useState({
-        username:'',
-        password:''
-    })
-    const [errors, setErrors] = useState([])
-    const history = useHistory()
+  //     };
+  //     console.log(userInfo);
+  //     fetch("/signup", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(userInfo),
+  //     })
+  //       .then((r) => r.json())
+  //       .then((user) => history.push("/login"));
+  //   }
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+  const [errors, setErrors] = useState([]);
+  const history = useHistory();
 
-    const {username, password} = formData
+  const { username, password } = formData;
 
-    function onSubmit(e){
-        e.preventDefault()
-        const user = {
-            username,
-            password
-        }
-       
-        fetch(`/users`,{
-          method:'POST',
-          headers:{'Content-Type': 'application/json'},
-          body:JSON.stringify(user)
-        })
-        .then(res => {
-            if(res.ok){
-                res.json().then(user => {
-                    updateUser(user)
-                    history.push("/login")
-                })
-            }else {
-                //  res.json().then(json => setErrors(Object.entries(json.errors)))
-            
-                res.json().then(json => setErrors(json.errors))
-                
-            }
-        })
-       
-    }
+  function onSubmit(e) {
+    e.preventDefault();
+    const user = {
+      username,
+      password,
+    };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target
-        setFormData({ ...formData, [name]: value })
+    fetch(`/users`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(user),
+    }).then((res) => {
+      if (res.ok) {
+        res.json().then((user) => {
+          updateUser(user);
+          history.push("/login");
+        });
+      } else {
+        //  res.json().then(json => setErrors(Object.entries(json.errors)))
+
+        res.json().then((json) => setErrors(json.errors));
       }
-return (
+    });
+  }
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+  return (
     <div>
       <form className="signup-container" onSubmit={onSubmit}>
         <input
@@ -83,13 +80,13 @@ return (
           value={formData.password}
           placeholder="password"
         />
-        {errors.length > 0 && errors.map((error)=>{
-         return <p>{error}</p>
-        })}
+        {errors.length > 0 &&
+          errors.map((error) => {
+            return <p>{error}</p>;
+          })}
         <div>
-          <button type="submit">SignUp</button> 
+          <button type="submit">SignUp</button>
         </div>
-      
       </form>
     </div>
   );
