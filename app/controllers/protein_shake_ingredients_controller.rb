@@ -11,7 +11,7 @@ skip_before_action :authorize, only: [:index, :create, :show, :update, :destroy]
     end
 
     def create
-        protein_shake_ingredient = ProteinShakeIngredient.create!(protein_shake_ingredient_params)
+        protein_shake_ingredient = ProteinShakeIngredient.insert_all(protein_shake_ingredient_params)
         render json: protein_shake_ingredient, status: :created
     end
 

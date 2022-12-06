@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 function ReviewForm({ user, addNewReview, proteinshake }) {
-  const [userId, setUser] = useState("");
-  const [proteinShakeId, setProteinShake] = useState("");
-  const [errors, setErrors] = useState([]);
-  const [values, setValues] = useState({
+const [userId, setUser] = useState("");
+const [proteinShakeId, setProteinShake] = useState("");
+const [errors, setErrors] = useState([]);
+const [values, setValues] = useState({
     username: "",
     description: "",
   });
@@ -35,24 +35,24 @@ function ReviewForm({ user, addNewReview, proteinshake }) {
 
   //   function handleSubmit(e) {
   //     e.preventDefault();
-  //   const newReviewObj = {
-  //     user_id: parseInt(userId),
-  //     protein_shake_id: parseInt(proteinShakeId),
-  //     description: fetch("/reviews", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify(newReviewObj),
-  //     }).then((r) => {
-  //       if (r.ok) {
-  //         r.json().then((review) => {
-  //           addNewReview(review);
-  //           history.push("/proteinshake");
-  //         });
-  //       } else {
-  //         r.json().then((error) => setErrors(errors));
-  //       }
-  //     }),
-  //   };
+    //   const newReviewObj = {
+    //     user_id: parseInt(userId),
+    //     protein_shake_id: parseInt(proteinShakeId),
+    //     description: fetch("/reviews", {
+    //       method: "POST",
+    //       headers: { "Content-Type": "application/json" },
+    //       body: JSON.stringify(newReviewObj),
+    //     }).then((r) => {
+    //       if (r.ok) {
+    //         r.json().then((review) => {
+    //           addNewReview(review);
+    //           history.push("/proteinshake");
+    //         });
+    //       } else {
+    //         r.json().then((error) => setErrors(errors));
+    //       }
+    //     }),
+    //   };
 
   return (
     <div className="form-container">
