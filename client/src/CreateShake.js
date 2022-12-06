@@ -99,12 +99,7 @@ function CreateShake({ currentUser }) {
   const shakeObj = { name: shakeName, image: shakeImg, recipe: shakeRecipe };
   console.log(shakeObj);
   //trying to create shake but not grabbing ingredient
-  const handleCreateShake = () => {
-    fetch(`/protein_shakes`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(shakeObj),
-    }).then((res) => res.json());
+ 
     // .then((data) => console.log(data)
 
     //Displaying all categories
@@ -156,6 +151,6 @@ function CreateShake({ currentUser }) {
       </div>
     );
   };
-}
+
 //Mapping through each ingredient ^
 export default CreateShake;
