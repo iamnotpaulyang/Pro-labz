@@ -78,7 +78,7 @@ function EditReviewForm({setProteinShakeListing, proteinShakeListing, newReviewO
         {submitted && !values.description ? (
           <span>Please enter a review </span>
         ) : null}
-        <button className="form-field" type="submit">
+        <button className="edit-button" type="submit">
           Submit Review!
         </button>
       </form>

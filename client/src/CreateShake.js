@@ -45,7 +45,7 @@ function CreateShake({
       })
       .map((ingredient) => {
         return (
-          <div style={{ display: "flex" }}>
+          <div className="ingredient-display"style={{ display: "flex" }}>
             <button
               onClick={() => handleAddingIngredients(ingredient)}
               // style={{ margin: "1px" }}
@@ -98,9 +98,11 @@ function CreateShake({
   const categoriesDisplay = categories.map((category) => {
     return (
       <>
-        <h1>{category.name}</h1>
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
+      <div className="ingredient-display-parent">
+        <h1 className="category-name">{category.name}</h1>
+        <div className="recipe-card"style={{ display: "flex", flexWrap: "wrap" }}>
           {ingredientDisplay(category.name)}
+        </div>
         </div>
       </>
     );
@@ -151,9 +153,10 @@ function makeBrrBrr(){
 
   // Listing each ingredient into shakes
   return (
-    <div style={{ display: "flex" }}>
+    // <div style={{ display: "flex" }}>
       <div>
-        <label>Ingredients: </label>
+      <label className="ingredient-label">Ingredients: </label>
+      <div className="grandparent">
         {categoriesDisplay}
       </div>
       <div style={{ width: "50vw" }}>

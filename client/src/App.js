@@ -111,7 +111,8 @@ function App() {
             <Login updateUser={updateUser} />
           </Route>
           <Route path="/">
-            {/* <h1>Pro Labz</h1> */}
+            <Home/>
+          {/* <h1 className="home-title">Pro-Labz.</h1> */}
           </Route>
         </Switch>
       </div>

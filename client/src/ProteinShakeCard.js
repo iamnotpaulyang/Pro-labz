@@ -10,14 +10,17 @@ function ProteinShakeCard({
   handleEditReview,
 }) {
   return (
-    <div>
-      <div className="card">
-        <h1 className="shake-name"> {shake.name} </h1>
-      </div>
-      <div className="card">
-        <img src={shake.image} alt="protein-shake" />
+    <div className="card-child">
+      <div>
+      {/* <div className="card"> */}
+        <h1> {shake.name} </h1>
+      {/* </div> */}
+      <br></br>
+      {/* <div className="card"> */}
+        <img className="card-img"src={shake.image} alt="protein-shake" />
         {/* style={{ margin: "1px" for mango shake that is too large  }} */}
-      </div>
+      {/* </div> */}
+      <br></br>
       <ul>
         <h3>Ingredients: </h3>
         {shake.ingredients.map((ingredient) => (
@@ -50,6 +53,7 @@ function ProteinShakeCard({
         );
       })}
       {/* </ul> */}
+      </div> 
     </div>
   );
 }

@@ -5,16 +5,18 @@
 }
 .blender{
     position: fixed;
-    left: 50%;
-    top: 50%;
+    left: 75%;
+    top: 75%;
     transform: translate(-50%, -50%);
-    width: 700px;
+    width: 500px;
     height: 500px;
     /*background-color: red;*/
     background-image: url(https://github.com/vkive/Blender/blob/master/Img/licuadoraApagada.png?raw=true);
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+    border: 10px solid #3f89f8;
+    
 }
 .blender.active{
     background-image: url(https://github.com/vkive/Blender/blob/master/Img/licuadoraEncendida.gif?raw=true);

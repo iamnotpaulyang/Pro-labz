@@ -38,12 +38,12 @@ function Review({ review, setProteinShakeListing, proteinShakeListing }) {
     <div>
       {review.description}
       <ul>
-        <button className="Edit-Review">
+        <button className="edit-review">
           <Link to={`/editreviewform/${review.id}`}> ✏️ </Link>
         </button>
       </ul>
       <ul>
-        <button className="Delete-Review" onClick={handleDelete}>
+        <button className="delete-review" onClick={handleDelete}>
           x
         </button>
       </ul>

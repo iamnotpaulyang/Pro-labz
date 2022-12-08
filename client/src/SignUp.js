@@ -65,8 +65,8 @@ function SignUp({updateUser}){
         setFormData({ ...formData, [name]: value })
       }
 return (
-    <div>
-      <form className="signup-container" onSubmit={onSubmit}>
+    <div className="parent-login-form">
+      <form className="login-form" onSubmit={onSubmit}>
         <input
           type="text"
           onChange={handleChange}
@@ -74,6 +74,7 @@ return (
           value={formData.username}
           placeholder="username"
         />
+        <br></br>
         <input
           type="password"
           onChange={handleChange}
@@ -86,6 +87,7 @@ return (
         })}
         <div>
           <button type="submit">SignUp</button> 
+          <br></br>
         </div>
       
       </form>

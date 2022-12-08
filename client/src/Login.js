@@ -48,8 +48,8 @@ function Login({ updateUser }) {
     
   
     return (
-    <div>
-    <form onSubmit={onSubmit}>
+    <div className="parent-login-form">
+    <form className="login-form" onSubmit={onSubmit}>
       <input
         type="text"
         onChange={handleChange}
@@ -57,6 +57,7 @@ function Login({ updateUser }) {
         value={formData.username}
         placeholder="username"
       />
+      <br></br>
       <input
         type="password"
         onChange={handleChange}
@@ -64,6 +65,7 @@ function Login({ updateUser }) {
         value={formData.password}
         placeholder="password"
       />
+      <br></br>
       <input type="submit" value="submit"/>
     </form>
   </div>

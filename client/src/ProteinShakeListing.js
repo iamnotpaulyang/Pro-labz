@@ -6,7 +6,7 @@ function ProteinShakeListing({ proteinShakeListing, setProteinShakeListing }) {
   // console.log(proteinShakeListing);
 
   return (
-    <div className="protein-shake-listing">
+    <div className="card-parent">
       {proteinShakeListing.map((shake) => {
         return (
           <ProteinShakeCard
