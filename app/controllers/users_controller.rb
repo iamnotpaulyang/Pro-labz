@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-skip_before_action :authorize, only: [:index, :create, :show]
+skip_before_action :authorize, only: [:index, :create]
    
     def index
         render json: User.all, status: :ok
@@ -12,12 +12,13 @@ skip_before_action :authorize, only: [:index, :create, :show]
     end
     
     def show
-        user = User.find_by(id: session[:user_id])
-        if user
-          render json: user
-        else
-          render json: { error: "Not authorized" }, status: :unauthorized
-        end
+        # user = User.find_by(id: session[:user_id])
+        # if user
+        #   render json: user
+        # else
+        #   render json: { error: "Not authorized" }, status: :unauthorized
+        # end
+        render json: @current_user, status: :ok
     end   
 
     private

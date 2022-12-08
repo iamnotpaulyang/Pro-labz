@@ -1,18 +1,23 @@
 import { useState, useEffect } from "react";
+import "./CreateShake.css";
 
-function CreateShake({ currentUser }) {
+function CreateShake({
+  // currentUser,
+  // proteinShakeListing,
+  setProteinShakeListing,
+}) {
   const [categories, setCategories] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   const [shakeRecipe, setShakeRecipe] = useState([]);
-  const [fetchedData, setFetchedData] = useState(false);
   const [shakeName, setShakeName] = useState("");
   const [shakeImg, setShakeImg] = useState("");
-  //   const [categories, setCategories] = useState([]);
-  //   const [selected, setCategoryChange] = useState("");
+  // const [fetchedData, setFetchedData] = useState(false);
 
   useEffect(() => {
     getSelections();
-  }, [fetchedData]);
+  }, []);
+
+  //^fetchedData
 
   //Fetching both category & ingredient
   function getSelections() {
@@ -37,7 +42,6 @@ function CreateShake({ currentUser }) {
     return ingredients
       .filter((ingredient) => {
         return ingredient.category.name === category;
-        // return ingredient.category.image === category
       })
       .map((ingredient) => {
         return (
@@ -58,7 +62,7 @@ function CreateShake({ currentUser }) {
       });
   };
 
-  //trying to create shake but not grabbing ingredient
+  //Creating shakes and ingredients into shakes
   const handleCreateShake = () => {
     fetch(`/protein_shakes`, {
       method: "POST",
@@ -75,12 +79,19 @@ function CreateShake({ currentUser }) {
         fetch(`/protein_shake_ingredients`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ newShakeArray }),
+          body: JSON.stringify({
+            protein_shake_id: data.id,
+            ingredients: newShakeArray,
+          }),
         })
           .then((res) => res.json())
-          .then((data) => console.log(data));
+          .then((data) =>
+            setProteinShakeListing((proteinShakeListing) => [
+              ...proteinShakeListing,
+              data,
+            ])
+          );
       });
-    //   console.log(currentUser);
   };
 
   //Displaying all categories
@@ -95,62 +106,106 @@ function CreateShake({ currentUser }) {
     );
   });
 
-  console.log(shakeRecipe);
-  const shakeObj = { name: shakeName, image: shakeImg, recipe: shakeRecipe };
-  console.log(shakeObj);
-  //trying to create shake but not grabbing ingredient
- 
-    // .then((data) => console.log(data)
+  // console.log(shakeRecipe);
 
-    //Displaying all categories
-    
+  //Delete ingredient from shake
+  function deleteIngredient(i) {
+    const recipeIngredientFilter = shakeRecipe.filter((ingredient, index) => {
+      return i !== index;
+    });
+    setShakeRecipe(recipeIngredientFilter);
+  }
 
-    //Delete ingredient from shake
-    function deleteIngredient(i) {
-      const recipeIngredientFilter = shakeRecipe.filter((ingredient, index) => {
-        return i !== index;
-      });
-      setShakeRecipe(recipeIngredientFilter);
+var estadoBlender = "Apagada";
+var soundBlender = document.getElementById("blender-sound");
+var buttomBlender = document.getElementById("blender-button-sound");
+var Blender = document.getElementById("blender");
+
+function controlarBlender(){
+    if (estadoBlender == "Apagada"){
+        estadoBlender = "Encendida";
+        makeBrrBrr();
+        console.log(Blender)
+        Blender.classList.add("active");
+        console.log(Blender.classList)
+       /* console.log("Esta Prendido");*/
+    }else{
+        estadoBlender = "Apagada";
+        makeBrrBrr();
+        Blender.classList.remove("active");
+       /* console.log("Esta Apagado");*/
     }
+}
 
-    // Listing each ingredient into shakes
-    return (
-      <div style={{ display: "flex" }}>
-        <div>
-          <label>Ingredients: </label>
-          {categoriesDisplay}
-        </div>
-        <div style={{ width: "50vw" }}>
-          {shakeRecipe.map((ingredient, index) => {
-            return (
-              <div style={{ display: "flex" }}>
-                <p> {ingredient.name}</p>
-                <button
-                  style={{ height: "20px" }}
-                  onClick={() => {
-                    deleteIngredient(index);
-                  }}
-                >
-                  x
-                </button>
-              </div>
-            );
-          })}
-          <label>Shake Name:</label>
-          <input
-            value={shakeName}
-            onChange={(e) => setShakeName(e.target.value)}
-          />
-          <label>Shake Image url:</label>
-          <input
-            value={shakeImg}
-            onChange={(e) => setShakeImg(e.target.value)}
-          />
-          <button onClick={handleCreateShake}>Create My Shake</button>
-        </div>
+function makeBrrBrr(){
+    if (soundBlender.paused){
+        buttomBlender.play();
+        soundBlender.play();
+    }else{
+        buttomBlender.play();
+        soundBlender.pause();
+        soundBlender.currentTime=0;
+    }
+}
+
+
+  // Listing each ingredient into shakes
+  return (
+    <div style={{ display: "flex" }}>
+      <div>
+        <label>Ingredients: </label>
+        {categoriesDisplay}
       </div>
-    );
-  };
+      <div style={{ width: "50vw" }}>
+        {shakeRecipe.map((ingredient, index) => {
+          return (
+            <div style={{ display: "flex" }}>
+              <p> {ingredient.name}</p>
+              <button
+                style={{ height: "20px" }}
+                onClick={() => {
+                  deleteIngredient(index);
+                }}
+              >
+                x
+              </button>
+            </div>
+          );
+        })}
+        <label>Shake Name:</label>
+        <input
+          value={shakeName}
+          onChange={(e) => setShakeName(e.target.value)}
+        />
+        <label>Shake Image url:</label>
+        <input value={shakeImg} onChange={(e) => setShakeImg(e.target.value)} />
+        <button onClick={handleCreateShake}>Create My Shake</button>
+
+        {/*blendar*/}
+        <div className="container">
+          <div id="blender" className="blender">
+            <div
+              id="blender-button"
+              className="blender-button"
+              onClick={() => controlarBlender()}
+            ></div>
+          </div>
+        </div>
+        <audio
+          id="blender-button-sound"
+          src="https://github.com/vkive/Blender/blob/master/Sound/sound_botonLicuadora.mp3"
+          type="audio/mpeg"
+        ></audio>
+        <audio
+          id="blender-sound"
+          src="https://github.com/vkive/Blender/blob/master/Sound/sound_licuadora.mp3"
+          type="audio/mpeg"
+          loop
+        ></audio>
+      </div>
+    </div>
+  );
+}
 
 //Mapping through each ingredient ^
 export default CreateShake;

@@ -3,10 +3,11 @@ Rails.application.routes.draw do
   resources :protein_shake_ingredients
   resources :categories, only: [:index]
   resources :users, only: [:index, :show, :create]
-  resources :protein_shakes, only: [:index, :show, :create]
+  resources :protein_shakes
   resources :ingredients, only: [:index, :show, :destroy]
   resources :reviews
-
+  
+  get '/authorized_user', to: 'users#show'
   post '/login', to: 'sessions#create'
   post '/signup', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'

@@ -17,13 +17,21 @@ class ReviewsController < ApplicationController
 
     def update
         review = find_review
-        review.update(params.permit(:description))
-        render json: review, status: :accepted
+        review.update!(description: params[:newReviewObj][:description])
+        render json: review.protein_shake, status: :accepted
     end
 
     def destroy
-        find_review.destroy 
-        head :no_content
+        # find_review.destroy 
+        # head :no_content
+        review = find_review
+        if review
+            shake = review.protein_shake
+            review.destroy
+            render json: shake
+        else
+            render json: { error: "review not found" }, status: 404
+        end
     end
 
     private

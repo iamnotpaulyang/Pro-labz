@@ -1,20 +1,54 @@
-// import React from 'react'
+import React, { useState } from "react";
+import { useHistory, Link } from "react-router-dom";
 
-// function Review({review}){
+function Review({ review, setProteinShakeListing, proteinShakeListing }) {
+  const [deletedReview, setDeletedReview] = useState();
+  const history = useHistory();
 
-    
-    
-    
-    
-    
-    
-//     return
+  //Deleting Review
+  function handleDelete() {
+    // setDeletedReview(true);
+    const deletedReview = {
+      method: "DELETE",
+    };
+    fetch(`/reviews/${review.id}`, deletedReview)
+      .then((r) => r.json())
+      .then((shake) => {
+        const updatedShakes = proteinShakeListing.map((proteinshake) => {
+          console.log("review", review)
+          return proteinshake.id === review?.protein_shake_id
+            ? shake
+            : proteinshake;
+        });
+        console.log(updatedShakes);
+        console.log(shake)
+        
+        setProteinShakeListing(updatedShakes);
+      });
 
+    // window.location.reload(true);
+  }
 
+  function editReview(e) {
+    e.preventDefault();
+    history.push(`/editreviewform`);
+  }
 
+  return (
+    <div>
+      {review.description}
+      <ul>
+        <button className="Edit-Review">
+          <Link to={`/editreviewform/${review.id}`}> ✏️ </Link>
+        </button>
+      </ul>
+      <ul>
+        <button className="Delete-Review" onClick={handleDelete}>
+          x
+        </button>
+      </ul>
+    </div>
+  );
+}
 
-// }
-
-
-
-// export default Review;
+export default Review;

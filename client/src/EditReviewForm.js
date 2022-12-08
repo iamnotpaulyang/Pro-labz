@@ -1,26 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useParams, useHistory }from "react-router-dom";
+import ProteinShakeListing from "./ProteinShakeListing";
 
-function ReviewForm({
-  reviews,
-  setReviews,
-  currentUser,
-  setCurrentUser,
-  handleAddReview,
-  proteinshake,
-}) {
+function EditReviewForm({setProteinShakeListing, proteinShakeListing, newReviewObj, reviews, currentUser }) {
   const [errors, setErrors] = useState([]);
   const [values, setValues] = useState({
     username: "",
     description: "",
   });
-
-  //for error handling in review form
+  const [editReview, setEditReview] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [valid, setValid] = useState(false);
-
-  const history = useHistory();
   const { id } = useParams();
+  const history = useHistory();
 
   const handleUserNameInputChange = (e) => {
     setValues({ ...values, username: e.target.value });
@@ -29,41 +21,38 @@ function ReviewForm({
   const handleUserDescriptionInputChange = (e) => {
     setValues({ ...values, description: e.target.value });
   };
-  // if (values.username && values.description) {
-  //   setValid(true);
-  // }
-  // setSubmitted(true);
 
-  //Creating review for associated shakes
-  const handleSubmit = (e) => {
+  const handleEditReview = (e) => {
     e.preventDefault();
-    console.log("currentUser", currentUser);
     const newReviewObj = {
       user_id: currentUser.id,
       protein_shake_id: id,
       description: values.description,
     };
 
-    fetch("/reviews", {
-      method: "POST",
+    
+    // setEditReview(true);
+    const editedReview = {
+      method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newReviewObj),
-    }).then((r) => {
-      if (r.ok) {
-        r.json().then((review) => {
-          handleAddReview(review);
-          history.push("/proteinshake");
-        });
-      } else {
-        r.json().then((errors) => setErrors(errors));
-      }
-    });
-  };
-
-
-  return (
+      body: JSON.stringify({ newReviewObj }),
+    };
+    fetch(`/reviews/${id}`, editedReview)
+      .then((r) => r.json())
+      .then((data) => {
+        console.log(data)
+        const updatedShakes = proteinShakeListing?.map((proteinshake)=> {
+          return proteinshake.id === data.id
+            ? data
+            : proteinshake;
+        })
+        setProteinShakeListing(updatedShakes);
+        history.push("/proteinshake")
+      });
+  }
+    return (
     <div className="form-container">
-      <form className="review-form" onSubmit={handleSubmit}>
+      <form className="review-form" onSubmit={handleEditReview}>
         {submitted && valid ? (
           <div className="success-message">
             Thank You for submitting your review!
@@ -89,14 +78,13 @@ function ReviewForm({
         {submitted && !values.description ? (
           <span>Please enter a review </span>
         ) : null}
-        <button class="form-field" type="submit">
+        <button className="form-field" type="submit">
           Submit Review!
-          {/* <Link to={`/reviews/${shake.id}`}>Submit Review!</Link>
-          <Link to={`/proteinshake/`}>Submit Review!</Link> */}
         </button>
       </form>
     </div>
   );
-}
+};
 
-export default ReviewForm;
+
+export default EditReviewForm;

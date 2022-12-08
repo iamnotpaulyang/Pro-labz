@@ -1,13 +1,21 @@
 import ProteinShakeCard from "./ProteinShakeCard";
 
-//Returning all preset shakes
-function ProteinShakeListing({ proteinShakeListing }) {
-  console.log(proteinShakeListing);
+//Returning all shakes
+function ProteinShakeListing({ proteinShakeListing, setProteinShakeListing }) {
+  
+  // console.log(proteinShakeListing);
 
   return (
     <div className="protein-shake-listing">
       {proteinShakeListing.map((shake) => {
-        return <ProteinShakeCard key={shake.id} shake={shake} />;
+        return (
+          <ProteinShakeCard
+            key={shake.id}
+            setProteinShakeListing={setProteinShakeListing}
+            proteinShakeListing={proteinShakeListing}
+            shake={shake}
+          />
+        );
       })}
     </div>
   );

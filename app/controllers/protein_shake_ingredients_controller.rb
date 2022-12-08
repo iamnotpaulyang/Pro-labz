@@ -11,8 +11,17 @@ skip_before_action :authorize, only: [:index, :create, :show, :update, :destroy]
     end
 
     def create
-        protein_shake_ingredient = ProteinShakeIngredient.insert_all(protein_shake_ingredient_params)
-        render json: protein_shake_ingredient, status: :created
+        protein_shake = ProteinShake.find(params[:protein_shake_id])
+        ingredients = []
+        params[:ingredients].each do |ingredient|
+                ingredients << ProteinShakeIngredient.create(ingredient_id: ingredient["ingredient_id"], protein_shake_id: protein_shake.id)
+
+        end
+
+
+        protein_shake.add_ingredients_to_shake(ingredients)
+        render json: protein_shake, status: :created
+        
     end
 
     def update
@@ -33,7 +42,7 @@ skip_before_action :authorize, only: [:index, :create, :show, :update, :destroy]
     end
 
     def protein_shake_ingredient_params
-        params.permit(:protein_shake_id, :ingredient_id)
+        params.permit(:protein_shake_id)
     end
 end
 

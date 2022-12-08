@@ -2,10 +2,10 @@
     background: linear-gradient(to left, #6b87b2, #0c254a);
 }
 
-.home-title {
+.home-title h1 {
     margin-top: 250px;
     font-size: 15em;
-    color: #177E89;
+    color: #e10f0f;
     font-weight: bold;
     text-transform: uppercase;
     -webkit-box-reflect: below 1px linear-gradient(transparent, #0004);
@@ -32,3 +32,31 @@
         0 0 160px #abf5c1;
     }
 } */
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.blender{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 500px;
+    /*background-color: red;*/
+    background-image: url(https://github.com/vkive/Blender/blob/master/Img/licuadoraApagada.png?raw=true);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.blender.active{
+    background-image: url(https://github.com/vkive/Blender/blob/master/Img/licuadoraEncendida.gif?raw=true);
+}
+.blender-button{
+    margin: 350px auto 0px;
+    width: 70px;
+    height: 70px;
+}

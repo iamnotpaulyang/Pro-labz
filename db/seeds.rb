@@ -1,8 +1,8 @@
-Username.destroy_all
+User.destroy_all
 ProteinShake.destroy_all
-Categories.destroy_all
-Reviews.destroy_all
-Ingredients.destroy_all
+Category.destroy_all
+Review.destroy_all
+Ingredient.destroy_all
 ProteinShakeIngredient.destroy_all
 
 
