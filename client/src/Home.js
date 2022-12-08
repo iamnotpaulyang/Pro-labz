@@ -1,4 +1,4 @@
-import "./Home.css";
+import "./home.css";
 
 // var estadoBlender = "Apagada";
 // var soundBlender = document.getElementById("blender-sound");
