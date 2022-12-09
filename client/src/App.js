@@ -9,7 +9,6 @@ import ProteinShakeCard from "./ProteinShakeCard";
 import ProteinShakeListing from "./ProteinShakeListing";
 import ReviewForm from "./ReviewForm";
 import EditReviewForm from "./EditReviewForm";
-// import MyShakes from "./MyShakes";
 
 function App() {
   const [errors, setErrors] = useState(false);
@@ -18,6 +17,7 @@ function App() {
   const [reviews, setReviews] = useState([]);
 
   //To grab proteinshakes
+
   useEffect(() => {
     fetch("/protein_shakes")
       .then((r) => r.json())
@@ -26,9 +26,8 @@ function App() {
       });
   }, []);
 
-  // console.log(proteinShakeListing);
+  //To grab reviews
 
-  //To grab reviews don't need??
   useEffect(() => {
     fetch("/reviews")
       .then((r) => r.json())
@@ -49,7 +48,6 @@ function App() {
     console.log(updatedShakes);
     console.log(review);
   }
-  // console.log(reviews);
 
   //Authorization
 
@@ -72,10 +70,6 @@ function App() {
       <div className="App">
         <NavBar updateUser={updateUser} currentUser={currentUser} />
         <Switch>
-          {/* <Route path="/myshakes">
-            <h1>Hello</h1>
-            <MyShakes />
-          </Route> */}
           <Route path="/reviews/:id">
             <ReviewForm
               currentUser={currentUser}
@@ -84,11 +78,14 @@ function App() {
               setReviews={setReviews}
               handleAddReview={handleAddReview}
             />
-            <h1>Hello Reviews</h1>
           </Route>
           <Route path="/editreviewform/:id">
-            <EditReviewForm review={reviews} currentUser={currentUser} proteinShakeListing={proteinShakeListing}
-              setProteinShakeListing={setProteinShakeListing}/>
+            <EditReviewForm
+              review={reviews}
+              currentUser={currentUser}
+              proteinShakeListing={proteinShakeListing}
+              setProteinShakeListing={setProteinShakeListing}
+            />
           </Route>
           <Route path="/createshake">
             <CreateShake
@@ -111,8 +108,7 @@ function App() {
             <Login updateUser={updateUser} />
           </Route>
           <Route path="/">
-            <Home/>
-          {/* <h1 className="home-title">Pro-Labz.</h1> */}
+            <Home />
           </Route>
         </Switch>
       </div>

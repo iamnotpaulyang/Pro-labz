@@ -1,25 +1,21 @@
 import { useState, useEffect } from "react";
 import "./CreateShake.css";
 
-function CreateShake({
-  // currentUser,
-  // proteinShakeListing,
-  setProteinShakeListing,
-}) {
+function CreateShake({setProteinShakeListing,}) {
   const [categories, setCategories] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   const [shakeRecipe, setShakeRecipe] = useState([]);
   const [shakeName, setShakeName] = useState("");
   const [shakeImg, setShakeImg] = useState("");
-  // const [fetchedData, setFetchedData] = useState(false);
+  
 
   useEffect(() => {
     getSelections();
   }, []);
 
-  //^fetchedData
 
   //Fetching both category & ingredient
+
   function getSelections() {
     const urls = ["/categories", "/ingredients"];
     Promise.all(urls.map((url) => fetch(url)))
@@ -31,6 +27,7 @@ function CreateShake({
   }
 
   //Spreading ingredients
+
   const handleAddingIngredients = (ingredient) => {
     const ingredientArray = [...shakeRecipe, ingredient];
     setShakeRecipe(ingredientArray);
@@ -45,10 +42,9 @@ function CreateShake({
       })
       .map((ingredient) => {
         return (
-          <div className="ingredient-display"style={{ display: "flex" }}>
+          <div className="ingredient-display" style={{ display: "flex" }}>
             <button
               onClick={() => handleAddingIngredients(ingredient)}
-              // style={{ margin: "1px" }}
             >
               <img
                 src={ingredient.image}
@@ -63,6 +59,7 @@ function CreateShake({
   };
 
   //Creating shakes and ingredients into shakes
+
   const handleCreateShake = () => {
     fetch(`/protein_shakes`, {
       method: "POST",
@@ -95,20 +92,22 @@ function CreateShake({
   };
 
   //Displaying all categories
+
   const categoriesDisplay = categories.map((category) => {
     return (
       <>
-      <div className="ingredient-display-parent">
-        <h1 className="category-name">{category.name}</h1>
-        <div className="recipe-card"style={{ display: "flex", flexWrap: "wrap" }}>
-          {ingredientDisplay(category.name)}
-        </div>
+        <div className="ingredient-display-parent">
+          <h1 className="category-name">{category.name}</h1>
+          <div
+            className="recipe-card"
+            style={{ display: "flex", flexWrap: "wrap" }}
+          >
+            {ingredientDisplay(category.name)}
+          </div>
         </div>
       </>
     );
   });
-
-  // console.log(shakeRecipe);
 
   //Delete ingredient from shake
   function deleteIngredient(i) {
@@ -118,48 +117,45 @@ function CreateShake({
     setShakeRecipe(recipeIngredientFilter);
   }
 
-var estadoBlender = "Apagada";
-var soundBlender = document.getElementById("blender-sound");
-var buttomBlender = document.getElementById("blender-button-sound");
-var Blender = document.getElementById("blender");
+  //Blender functionality
+  
+  var estadoBlender = "Apagada";
+  var soundBlender = document.getElementById("blender-sound");
+  var buttomBlender = document.getElementById("blender-button-sound");
+  var Blender = document.getElementById("blender");
 
-function controlarBlender(){
-    if (estadoBlender == "Apagada"){
-        estadoBlender = "Encendida";
-        makeBrrBrr();
-        console.log(Blender)
-        Blender.classList.add("active");
-        console.log(Blender.classList)
-       /* console.log("Esta Prendido");*/
-    }else{
-        estadoBlender = "Apagada";
-        makeBrrBrr();
-        Blender.classList.remove("active");
-       /* console.log("Esta Apagado");*/
+  function controlarBlender() {
+    if (estadoBlender == "Apagada") {
+      estadoBlender = "Encendida";
+      makeBrrBrr();
+      console.log(Blender);
+      Blender.classList.add("active");
+      console.log(Blender.classList);
+    } else {
+      estadoBlender = "Apagada";
+      makeBrrBrr();
+      Blender.classList.remove("active");
     }
-}
+  }
 
-function makeBrrBrr(){
-    if (soundBlender.paused){
-        buttomBlender.play();
-        soundBlender.play();
-    }else{
-        buttomBlender.play();
-        soundBlender.pause();
-        soundBlender.currentTime=0;
+  function makeBrrBrr() {
+    if (soundBlender.paused) {
+      buttomBlender.play();
+      soundBlender.play();
+    } else {
+      buttomBlender.play();
+      soundBlender.pause();
+      soundBlender.currentTime = 0;
     }
-}
+  }
 
-
-  // Listing each ingredient into shakes
   return (
-    // <div style={{ display: "flex" }}>
-      <div>
+    <div>
       <label className="ingredient-label">Ingredients: </label>
-      <div className="grandparent">
-        {categoriesDisplay}
-      </div>
+      <div className="grandparent">{categoriesDisplay}</div>
       <div style={{ width: "50vw" }}>
+        {/*Mapping through each ingredient*/}
+
         {shakeRecipe.map((ingredient, index) => {
           return (
             <div style={{ display: "flex" }}>
@@ -210,5 +206,4 @@ function makeBrrBrr(){
   );
 }
 
-//Mapping through each ingredient ^
 export default CreateShake;

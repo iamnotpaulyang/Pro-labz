@@ -1,9 +1,9 @@
 import ProteinShakeCard from "./ProteinShakeCard";
 
 //Returning all shakes
+
 function ProteinShakeListing({ proteinShakeListing, setProteinShakeListing }) {
   
-  // console.log(proteinShakeListing);
 
   return (
     <div className="card-parent">

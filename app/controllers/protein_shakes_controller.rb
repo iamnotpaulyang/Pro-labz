@@ -11,7 +11,6 @@ class ProteinShakesController < ApplicationController
         end
     
         def create
-            # binding.break
             protein_shake = ProteinShake.create!(name: params[:name], image: params[:image])
             render json: protein_shake, status: :created
         end

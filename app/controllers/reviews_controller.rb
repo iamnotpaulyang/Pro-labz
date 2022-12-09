@@ -22,8 +22,6 @@ class ReviewsController < ApplicationController
     end
 
     def destroy
-        # find_review.destroy 
-        # head :no_content
         review = find_review
         if review
             shake = review.protein_shake

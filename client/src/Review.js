@@ -6,8 +6,8 @@ function Review({ review, setProteinShakeListing, proteinShakeListing }) {
   const history = useHistory();
 
   //Deleting Review
+
   function handleDelete() {
-    // setDeletedReview(true);
     const deletedReview = {
       method: "DELETE",
     };
@@ -15,14 +15,14 @@ function Review({ review, setProteinShakeListing, proteinShakeListing }) {
       .then((r) => r.json())
       .then((shake) => {
         const updatedShakes = proteinShakeListing.map((proteinshake) => {
-          console.log("review", review)
+          console.log("review", review);
           return proteinshake.id === review?.protein_shake_id
             ? shake
             : proteinshake;
         });
         console.log(updatedShakes);
-        console.log(shake)
-        
+        console.log(shake);
+
         setProteinShakeListing(updatedShakes);
       });
 

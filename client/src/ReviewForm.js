@@ -16,9 +16,9 @@ function ReviewForm({
   });
 
   //for error handling in review form
+
   const [submitted, setSubmitted] = useState(false);
   const [valid, setValid] = useState(false);
-
   const history = useHistory();
   const { id } = useParams();
 
@@ -35,6 +35,7 @@ function ReviewForm({
   // setSubmitted(true);
 
   //Creating review for associated shakes
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("currentUser", currentUser);
@@ -60,42 +61,41 @@ function ReviewForm({
     });
   };
 
-
   return (
-    <div className="form-container">
-      <form className="review-form" onSubmit={handleSubmit}>
-        {submitted && valid ? (
-          <div className="success-message">
-            Thank You for submitting your review!
-          </div>
-        ) : null}
-        <input
-          onChange={handleUserNameInputChange}
-          value={values.username}
-          className="form-field"
-          placeholder="Username"
-          name="username"
-        ></input>
-        {submitted && !values.username ? (
-          <span>Please enter username </span>
-        ) : null}
-        <input
-          onChange={handleUserDescriptionInputChange}
-          value={values.description}
-          className="form-field"
-          placeholder="Review"
-          name="description"
-        ></input>
-        {submitted && !values.description ? (
-          <span>Please enter a review </span>
-        ) : null}
-        <button class="form-field" type="submit">
-          Submit Review!
-          {/* <Link to={`/reviews/${shake.id}`}>Submit Review!</Link>
-          <Link to={`/proteinshake/`}>Submit Review!</Link> */}
-        </button>
-      </form>
-    </div>
+    <body className="review-form-image">
+      <div className="form-container">
+        <form className="review-form" onSubmit={handleSubmit}>
+          {submitted && valid ? (
+            <div className="success-message">
+              Thank You for submitting your review!
+            </div>
+          ) : null}
+          <input
+            onChange={handleUserNameInputChange}
+            value={values.username}
+            className="form-field"
+            placeholder="Username"
+            name="username"
+          ></input>
+          {submitted && !values.username ? (
+            <span>Please enter username </span>
+          ) : null}
+          <input
+            onChange={handleUserDescriptionInputChange}
+            value={values.description}
+            className="form-field"
+            placeholder="Review"
+            name="description"
+          ></input>
+          {submitted && !values.description ? (
+            <span>Please enter a review </span>
+          ) : null}
+          <button class="form-field" type="submit">
+            Submit Review!
+          </button>
+        </form>
+      </div>
+    </body>
   );
 }
 

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=BioRhyme');
+
 /* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -13,6 +15,7 @@ code {
 }
 
 h2 {
+  font-family: 'BioRhyme', serif;
   margin-top: 250px;
   font-size: 15em;
   color: #e1dd0f;
@@ -45,18 +48,14 @@ h2 {
 }
 
 body {
-
-  background: linear-gradient(to left, #6b87b2, #0c254a);
-
-
+  font-family: 'BioRhyme', serif;
   background: #76b852;
-  /* display: flex; */
-  /* min-height: 100vh; */
   justify-content: center;
   align-items: center;
 }
 
 .form-container {
+  font-family: 'BioRhyme', serif;
   width: 360px;
   background-color: white;
   margin: auto;
@@ -85,12 +84,16 @@ body {
   padding: 15px;
   font-size: 16px;
   border: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: 'BioRhyme', serif;
 
 }
 .edit-button {
-  background: #ffa4a4;
-  padding-top: 15px;
+  background: #5DA890;
+  margin: 10px 0 10px 0;
+  padding: 15px;
+  font-size: 16px;
+  border: 0;
+  font-family: 'BioRhyme', serif;
 }
 
 span {
@@ -120,10 +123,34 @@ button:disabled {
 }
 
 
-
 .logoutButtonDiv {
   float: right;
+  
 }
+
+
+.logoutButton, .login-button, .signup-button {
+  font-size:15px;
+  font-family:Trebuchet MS;
+  width:80px;
+  height:30px;
+  border-width:1px;
+  color:#fff;
+  border-color:#4e6096;
+  border-top-left-radius:10px;
+  border-top-right-radius:10px;
+  border-bottom-left-radius:10px;
+  border-bottom-right-radius:10px;
+  box-shadow: 0px 0px 0px 2px #9fb4f2;
+  text-shadow: 0px 1px 0px #283966;
+  background:linear-gradient(rgba(14, 70, 14, 1), rgba(133, 235, 30, 1));
+}
+
+.logoutButton:hover, .login-button:hover, .signup-button:hover {
+  background: linear-gradient(rgba(133, 235, 30, 1), rgba(14, 70, 14, 1));
+}
+
+
 
 .navbarDiv {
   padding: 15px;
@@ -139,11 +166,9 @@ button:disabled {
   margin: 3%;
   flex-direction: row;
   flex-wrap: wrap;
-  /* background-color: #f2f2f2; */
 }
 
 .card-child {
-  /* display: flex; */
   flex-direction: column;
   max-width: 25%;
   margin: 3%;
@@ -195,6 +220,31 @@ min-width: 50px;
 
 .parent-login-form {
   text-align: center;
-  
 
 }
+
+.form-field {
+  font-family: 'BioRhyme', serif;
+  
+}
+
+    .nav-button {
+      font-size:20px;
+      font-family:Trebuchet MS;
+      width:200px;
+      height:200px;
+      border-width:1px;
+      color:#fff;
+      border-color:#4e6096;
+      border-top-left-radius:10px;
+      border-top-right-radius:10px;
+      border-bottom-left-radius:10px;
+      border-bottom-right-radius:10px;
+      box-shadow: 0px 0px 0px 2px #9fb4f2;
+      text-shadow: 0px 1px 0px #283966;
+      background:linear-gradient(rgba(14, 70, 14, 1), rgba(133, 235, 30, 1));
+    }
+    
+    .nav-button:hover {
+      background: linear-gradient(rgba(133, 235, 30, 1), rgba(14, 70, 14, 1));
+    }

@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
 //Logout
+
 function NavBar({ updateUser, currentUser }) {
   const history = useHistory();
 
@@ -26,30 +27,62 @@ function NavBar({ updateUser, currentUser }) {
           </button>
         </div>
       )}
-      <NavLink exact to="/" style={{ marginRight: "10px" }}>
+      <NavLink
+        className="nav-button"
+        exact
+        to="/"
+        style={{ marginRight: "10px" }}
+      >
         Home
       </NavLink>
-      <NavLink exact to="/proteinshake" style={{ marginRight: "10px" }}>
+      <NavLink
+        className="nav-button"
+        exact
+        to="/proteinshake"
+        style={{ marginRight: "10px" }}
+      >
         Protein Shakes
       </NavLink>
-      <NavLink exact to="/createshake" style={{ marginRight: "10px" }}>
+      <NavLink
+        className="nav-button"
+        exact
+        to="/createshake"
+        style={{ marginRight: "10px" }}
+      >
         Create Shakes
       </NavLink>
-      {/* <NavLink exact to="myshakes" style={{ marginRight: "10px" }}>
-        My Shakes
-      </NavLink> */}
-      <NavLink exact to="/review" style={{ marginRight: "10px" }}>
+      <NavLink
+        className="nav-button"
+        exact
+        to="/review"
+        style={{ marginRight: "10px" }}
+      >
         Create Review
       </NavLink>
-      <NavLink exact to="/editreviewform" style={{ marginRight: "10px" }}>
+      <NavLink
+        className="nav-button"
+        exact
+        to="/editreviewform"
+        style={{ marginRight: "10px" }}
+      >
         Edit Review
       </NavLink>
       {currentUser.id === undefined && (
         <div>
-          <NavLink exact to="/login" style={{ marginRight: "10px" }}>
+          <NavLink
+            className="nav-button"
+            exact
+            to="/login"
+            style={{ marginRight: "10px" }}
+          >
             Login
           </NavLink>
-          <NavLink exact to="signup" style={{ marginRight: "10px" }}>
+          <NavLink
+            className="nav-button"
+            exact
+            to="signup"
+            style={{ marginRight: "10px" }}
+          >
             SignUp
           </NavLink>
         </div>

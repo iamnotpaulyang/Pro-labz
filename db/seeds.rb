@@ -14,12 +14,12 @@ U3 = User.create(username: "Carloprezz", password: "backattack")
 U4 = User.create(username: "P-painz", password: "chickenlegs")
 
 puts "Creating Protein Shakes..."
-#add images later
+
 PS1 = ProteinShake.create(name: "Mango Madness", image: "https://healthywithachanceofsprinkles.com/wp-content/uploads/2022/02/Easy-Mango-Spinach-Smoothie-Recipe.jpg")
-PS2 = ProteinShake.create(name: "Stuffed PBJ")
-PS3 = ProteinShake.create(name: "Heartbeat")
-PS4 = ProteinShake.create(name: "Piña Colada")
-PS5 = ProteinShake.create(name: "Pick-me-Up") 
+PS2 = ProteinShake.create(name: "Stuffed PBJ", image: "https://www.eatingonadime.com/wp-content/uploads/2018/03/easy-fruit-smoothie-3-2.jpg")
+PS3 = ProteinShake.create(name: "Heartbeat", image: "https://www.thekitchenmccabe.com/wp-content/uploads/2017/02/Cherry-Berry-Beet-Smoothie-5-600x900.jpg")
+PS4 = ProteinShake.create(name: "Piña Colada", image: "https://healthiersteps.com/wp-content/uploads/2019/01/virgin-pina-colada-smoothie-375x500.jpg")
+PS5 = ProteinShake.create(name: "Pick-me-Up", image: "https://static.onecms.io/wp-content/uploads/sites/44/2019/08/26232622/6440439.jpg") 
 
 puts "Creating Categories..."
 
@@ -76,8 +76,9 @@ I31 = Ingredient.create(name: "Skim Milk", category_id: C3.id, image: "https://w
 I32 = Ingredient.create(name: "Almond Milk", category_id: C3.id, image: "https://www.quicklly.com/upload_images/product/1633016725-silk-almond-milk-unsweetened.jpg")
 I33 = Ingredient.create(name: "Soy Milk", category_id: C3.id, image: "https://www.quicklly.com/upload_images/product/1602268269-silk-plain-soy-milk.jpg")
 I34 = Ingredient.create(name: "Lactaid Milk", category_id: C3.id, image: "https://www.quicklly.com/upload_images/product/1517886216-lactaid-fat-free-milk.jpg")
-I35 = Ingredient.create(name: "Oat Milk", category_id: C3.id, image: "https://cdn.shopify.com/s/files/1/0471/3332/7519/products/RSP4860240_grey_900x.jpg?v=1636138670")
+I35 = Ingredient.create(name: "Oat Milk", category_id: C3.id, image: "https://i5.walmartimages.com/asr/fb2a7117-b2ed-466e-8a75-04b10c6b6dda.3d3b849d7167c47acc2bffeed37066f3.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF")
 I36 = Ingredient.create(name: "Greek Yogurt", category_id: C3.id, image: "https://i5.walmartimages.com/asr/e301c3b5-eeaf-47bf-bbbc-4220193c2529.b300f6244c6f46d19c75cf3ad169305d.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF")
+
 
 puts "Creating Protein Shake Ingredients..."
 
