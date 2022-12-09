@@ -154,6 +154,7 @@ function CreateShake({setProteinShakeListing,}) {
       <label className="ingredient-label">Ingredients: </label>
       <div className="grandparent">{categoriesDisplay}</div>
       <div style={{ width: "50vw" }}>
+
         {/*Mapping through each ingredient*/}
 
         {shakeRecipe.map((ingredient, index) => {
@@ -178,7 +179,7 @@ function CreateShake({setProteinShakeListing,}) {
         />
         <label>Shake Image url:</label>
         <input value={shakeImg} onChange={(e) => setShakeImg(e.target.value)} />
-        <button onClick={handleCreateShake}>Create My Shake</button>
+        <button className="create-shake-button"onClick={handleCreateShake}>Create My Shake</button>
 
         {/*blendar*/}
         <div className="container">
